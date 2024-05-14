@@ -7,3 +7,4 @@ NOW=$(date +%Y-%m-%d)
 git add .
 git commit -m "$NOW 추가"
 
+git push origin/master
