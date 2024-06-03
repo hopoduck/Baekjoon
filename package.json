@@ -14,7 +14,7 @@
     "node": ">=20"
   },
   "devDependencies": {
-    "@types/node": "^20.12.11",
-    "nodemon": "^3.1.0"
+    "@types/node": "^20.14.0",
+    "nodemon": "^3.1.2"
   }
 }
