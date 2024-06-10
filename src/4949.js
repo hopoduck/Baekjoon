@@ -1,4 +1,3 @@
-// TODO: 틀렸습니다. 나옴..
 const fs = require("fs");
 fs.readFileSync = () =>
   [
@@ -12,12 +11,15 @@ fs.readFileSync = () =>
     ".",
   ].join("\n");
 
-const lines = fs.readFileSync(0, "utf-8").toString().trim().split("\n");
+const lines = fs.readFileSync(0, "utf-8").toString().trimEnd().split("\n");
 const regex = /[()[\]]/g;
 
-const r = lines.map((line, i) => {
+const result = [];
+for (const line of lines) {
+  if (line === ".") break;
   const stack = [];
   const array = [...line.matchAll(regex)];
+  let comment = "yes";
   for (const [char] of array) {
     switch (char) {
       case "(":
@@ -25,7 +27,7 @@ const r = lines.map((line, i) => {
         break;
       case ")":
         if (stack.pop() !== "(") {
-          return "no";
+          comment = "no";
         }
         break;
       case "[":
@@ -33,14 +35,14 @@ const r = lines.map((line, i) => {
         break;
       case "]":
         if (stack.pop() !== "[") {
-          return "no";
+          comment = "no";
         }
         break;
     }
   }
   if (stack.length !== 0) {
-    return "no";
+    comment = "no";
   }
-  return "yes";
-});
-console.log(r.join("\n").trim());
+  result.push(comment);
+}
+console.log(result.join("\n").trim());
