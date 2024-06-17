@@ -4,15 +4,16 @@
 
 ```js
 const fs = require("fs");
-fs.readFileSync = () => "1 2 3";
+fs.readFileSync = () => `1
+2
+3`;
 
 let [a, b, c] = fs
   .readFileSync(0, "utf-8")
   .toString()
   .trim()
-  .replace("\n", " ")
-  .split(" ")
-  .map((d) => Number(d));
+  .split("\n")
+  .map(Number);
 ```
 
 ## 문자열로 가져오기
