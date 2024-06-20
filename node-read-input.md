@@ -8,7 +8,7 @@ fs.readFileSync = () => `1
 2
 3`;
 
-let [a, b, c] = fs
+const list = fs
   .readFileSync(0, "utf-8")
   .toString()
   .trim()
