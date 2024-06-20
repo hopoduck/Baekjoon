@@ -7,7 +7,7 @@ fs.readFileSync = () => `3
 6 0
 1 1 9 1 1 1`;
 
-const input = fs.readFileSync(0).toString().trim().split("\n");
+const input = fs.readFileSync(file).toString().trim().split("\n");
 
 let [n, ...arr] = input;
 arr = arr.map((item) => item.split(" ").map(Number));
@@ -15,28 +15,26 @@ let answer = "";
 
 for (let i = 0; i < arr.length; i += 2) {
   let count = 0;
-  const 중요도 = arr[i + 1];
-  let 위치 = arr[i][1];
-
-  console.log(중요도, 위치);
+  const priorities = arr[i + 1];
+  let location = arr[i][1];
 
   while (true) {
-    const max = Math.max(...중요도);
-    const number = 중요도.shift();
+    const max = Math.max(...priorities);
+    const number = priorities.shift();
     if (number === max) {
       count++;
-      if (위치 === 0) {
+      if (location === 0) {
         answer += count + "\n";
         break;
       }
     } else {
-      중요도.push(number);
+      priorities.push(number);
     }
 
-    if (위치 === 0) {
-      위치 = 중요도.length - 1;
+    if (location === 0) {
+      location = priorities.length - 1;
     } else {
-      위치--;
+      location--;
     }
   }
 }
